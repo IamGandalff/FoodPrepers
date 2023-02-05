@@ -4,14 +4,16 @@ using FoodPrepers.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FoodPrepers.Server.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230204203452_AddApplicationTables")]
+    partial class AddApplicationTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -124,32 +126,6 @@ namespace FoodPrepers.Server.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Foods");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Category = "Meat",
-                            CreatedBy = "SeedData",
-                            DateCreated = new DateTime(2023, 2, 6, 5, 25, 26, 773, DateTimeKind.Local).AddTicks(887),
-                            DateUpdated = new DateTime(2023, 2, 6, 5, 25, 26, 773, DateTimeKind.Local).AddTicks(7731),
-                            Description = "Lean protein source",
-                            Name = "Chicken breast",
-                            ServingSize = 100,
-                            UpdatedBy = "SeedData"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Category = "Fish",
-                            CreatedBy = "SeedData",
-                            DateCreated = new DateTime(2023, 2, 6, 5, 25, 26, 773, DateTimeKind.Local).AddTicks(8287),
-                            DateUpdated = new DateTime(2023, 2, 6, 5, 25, 26, 773, DateTimeKind.Local).AddTicks(8290),
-                            Description = "Omega-3 fatty acid rich food",
-                            Name = "Salmon",
-                            ServingSize = 100,
-                            UpdatedBy = "SeedData"
-                        });
                 });
 
             modelBuilder.Entity("FoodPrepers.Shared.Domain.Meal", b =>
@@ -203,56 +179,6 @@ namespace FoodPrepers.Server.Data.Migrations
                     b.HasIndex("MealPlanId");
 
                     b.ToTable("Meals");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedBy = "SeedData",
-                            DateCreated = new DateTime(2023, 2, 6, 5, 25, 26, 775, DateTimeKind.Local).AddTicks(4850),
-                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "A meal to start your day",
-                            MealPlanId = 1,
-                            Name = "Breakfast",
-                            TotalCaloricIntake = 500,
-                            TotalCarbohydrates = 50,
-                            TotalFat = 20,
-                            TotalFiber = 10,
-                            TotalProtein = 25,
-                            TotalSodium = 200
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedBy = "SeedData",
-                            DateCreated = new DateTime(2023, 2, 6, 5, 25, 26, 775, DateTimeKind.Local).AddTicks(4858),
-                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "A meal to have in the middle of your day",
-                            MealPlanId = 1,
-                            Name = "Lunch",
-                            TotalCaloricIntake = 600,
-                            TotalCarbohydrates = 55,
-                            TotalFat = 25,
-                            TotalFiber = 15,
-                            TotalProtein = 30,
-                            TotalSodium = 250
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedBy = "SeedData",
-                            DateCreated = new DateTime(2023, 2, 6, 5, 25, 26, 775, DateTimeKind.Local).AddTicks(4860),
-                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "A meal to have at the end of your day",
-                            MealPlanId = 1,
-                            Name = "Dinner",
-                            TotalCaloricIntake = 700,
-                            TotalCarbohydrates = 60,
-                            TotalFat = 30,
-                            TotalFiber = 20,
-                            TotalProtein = 35,
-                            TotalSodium = 300
-                        });
                 });
 
             modelBuilder.Entity("FoodPrepers.Shared.Domain.MealFood", b =>
@@ -297,56 +223,6 @@ namespace FoodPrepers.Server.Data.Migrations
                     b.HasIndex("MealId");
 
                     b.ToTable("MealFoods");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FoodId = 1,
-                            MealId = 1,
-                            ServingSize = 100,
-                            TotalCaloricIntake = 200,
-                            TotalFiber = 10,
-                            TotalProtein = 20
-                        },
-                        new
-                        {
-                            Id = 2,
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FoodId = 2,
-                            MealId = 1,
-                            ServingSize = 100,
-                            TotalCaloricIntake = 300,
-                            TotalFiber = 15,
-                            TotalProtein = 25
-                        },
-                        new
-                        {
-                            Id = 3,
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FoodId = 1,
-                            MealId = 2,
-                            ServingSize = 100,
-                            TotalCaloricIntake = 400,
-                            TotalFiber = 20,
-                            TotalProtein = 30
-                        },
-                        new
-                        {
-                            Id = 4,
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FoodId = 2,
-                            MealId = 2,
-                            ServingSize = 100,
-                            TotalCaloricIntake = 500,
-                            TotalFiber = 25,
-                            TotalProtein = 35
-                        });
                 });
 
             modelBuilder.Entity("FoodPrepers.Shared.Domain.MealPlan", b =>
@@ -398,45 +274,9 @@ namespace FoodPrepers.Server.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MealPlans");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedBy = "SeedData",
-                            DateCreated = new DateTime(2023, 2, 6, 5, 25, 26, 775, DateTimeKind.Local).AddTicks(1222),
-                            DateUpdated = new DateTime(2023, 2, 6, 5, 25, 26, 775, DateTimeKind.Local).AddTicks(1227),
-                            Description = "A meal plan high in protein",
-                            Name = "High Protein Meal Plan",
-                            TotalCaloricIntake = 2500,
-                            TotalCarbohydrates = 300,
-                            TotalFat = 100,
-                            TotalFiber = 25,
-                            TotalProtein = 200,
-                            TotalSodium = 1500,
-                            UpdatedBy = "SeedData",
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedBy = "SeedData",
-                            DateCreated = new DateTime(2023, 2, 6, 5, 25, 26, 775, DateTimeKind.Local).AddTicks(1231),
-                            DateUpdated = new DateTime(2023, 2, 6, 5, 25, 26, 775, DateTimeKind.Local).AddTicks(1232),
-                            Description = "A meal plan low in carbohydrates",
-                            Name = "Low Carb Meal Plan",
-                            TotalCaloricIntake = 2000,
-                            TotalCarbohydrates = 200,
-                            TotalFat = 80,
-                            TotalFiber = 20,
-                            TotalProtein = 150,
-                            TotalSodium = 1000,
-                            UpdatedBy = "SeedData",
-                            UserId = 1
-                        });
                 });
 
-            modelBuilder.Entity("FoodPrepers.Shared.Domain.NutritionFact", b =>
+            modelBuilder.Entity("FoodPrepers.Shared.Domain.NutritionFacts", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -497,44 +337,6 @@ namespace FoodPrepers.Server.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("NutritionFacts");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CaloricValue = 165,
-                            Cholesterol = 72,
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DietaryFiber = 0,
-                            FoodId = 1,
-                            Protein = 31,
-                            SaturatedFat = 1,
-                            ServingSize = 100,
-                            Sodium = 74,
-                            Sugars = 0,
-                            TotalCarbohydrates = 0,
-                            TotalFat = 3,
-                            TransFat = 0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CaloricValue = 208,
-                            Cholesterol = 55,
-                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DietaryFiber = 0,
-                            FoodId = 2,
-                            Protein = 22,
-                            SaturatedFat = 2,
-                            ServingSize = 100,
-                            Sodium = 63,
-                            Sugars = 0,
-                            TotalCarbohydrates = 0,
-                            TotalFat = 13,
-                            TransFat = 0
-                        });
                 });
 
             modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.DeviceFlowCodes", b =>
@@ -795,11 +597,11 @@ namespace FoodPrepers.Server.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("FoodPrepers.Shared.Domain.NutritionFact", b =>
+            modelBuilder.Entity("FoodPrepers.Shared.Domain.NutritionFacts", b =>
                 {
                     b.HasOne("FoodPrepers.Shared.Domain.Food", "Food")
                         .WithOne("NutritionFacts")
-                        .HasForeignKey("FoodPrepers.Shared.Domain.NutritionFact", "FoodId")
+                        .HasForeignKey("FoodPrepers.Shared.Domain.NutritionFacts", "FoodId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
