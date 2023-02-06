@@ -52,6 +52,16 @@ namespace FoodPrepers.Server.Configurations.Entities
                     TotalCaloricIntake = 500,
                     TotalProtein = 35,
                     TotalFiber = 25,
+                },
+                new MealFood
+                {
+                    Id = 5,
+                    MealId = 3,
+                    FoodId = 1,
+                    ServingSize = 100,
+                    TotalCaloricIntake = 300,
+                    TotalProtein = 25,
+                    TotalFiber = 15,
                 });
         }
     }

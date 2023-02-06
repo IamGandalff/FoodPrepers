@@ -24,6 +24,7 @@ namespace FoodPrepers.Server.Data
         public DbSet<MealPlan> MealPlans { get; set; }
         public DbSet<Meal> Meals { get; set; }
         public DbSet<MealFood> MealFoods { get; set; }
+        public DbSet<Staff> Staffs { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(connectionString)
@@ -39,6 +40,8 @@ namespace FoodPrepers.Server.Data
             builder.ApplyConfiguration(new MealPlanSeedConfiguration());
             builder.ApplyConfiguration(new MealSeedConfiguration());
             builder.ApplyConfiguration(new MealFoodSeedConfiguration());
+            builder.ApplyConfiguration(new StaffSeedConfiguration());
+
             
         }
     }

@@ -1,3 +1,4 @@
+using FoodPrepers.Server.IRepository;
 using FoodPrepers.Server.Data;
 using FoodPrepers.Server.Models;
 using Microsoft.AspNetCore.Authentication;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Linq;
+using FoodPrepers.Server.Repository;
 
 namespace FoodPrepers.Server
 {
@@ -26,6 +28,7 @@ namespace FoodPrepers.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -40,6 +43,8 @@ namespace FoodPrepers.Server
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
+
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();

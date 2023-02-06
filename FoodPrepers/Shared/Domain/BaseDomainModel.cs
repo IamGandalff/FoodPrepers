@@ -85,4 +85,15 @@ namespace FoodPrepers.Shared.Domain
         public int TotalFiber { get; set; }
 
     }
+    public class Staff : BaseDomainModel
+    {
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
+
+        public virtual ICollection<Food> Foods { get; set; }
+        public virtual ICollection<NutritionFact> NutritionFacts { get; set; }
+    }
+
 }

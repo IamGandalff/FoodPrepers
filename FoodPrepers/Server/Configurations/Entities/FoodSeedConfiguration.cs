@@ -36,6 +36,42 @@ namespace FoodPrepers.Server.Configurations.Entities
                     DateUpdated = DateTime.Now,
                     CreatedBy = "SeedData",
                     UpdatedBy = "SeedData"
+                },
+                new Food
+                {
+                    Id = 3,
+                    Name = "Eggs",
+                    Category = "Dairy",
+                    Description = "High in protein and versatile ingredient",
+                    ServingSize = 50,
+                    DateCreated = DateTime.Now,
+                    DateUpdated = DateTime.Now,
+                    CreatedBy = "SeedData",
+                    UpdatedBy = "SeedData"
+                },
+                new Food
+                {
+                    Id = 4,
+                    Name = "Brown Rice",
+                    Category = "Grains",
+                    Description = "Whole grain rich in fiber and carbohydrates",
+                    ServingSize = 150,
+                    DateCreated = DateTime.Now,
+                    DateUpdated = DateTime.Now,
+                    CreatedBy = "SeedData",
+                    UpdatedBy = "SeedData"
+                },
+                new Food
+                {
+                    Id = 5,
+                    Name = "Spinach",
+                    Category = "Vegetables",
+                    Description = "Leafy green vegetable high in nutrients",
+                    ServingSize = 50,
+                    DateCreated = DateTime.Now,
+                    DateUpdated = DateTime.Now,
+                    CreatedBy = "SeedData",
+                    UpdatedBy = "SeedData"
                 }
             );
         }

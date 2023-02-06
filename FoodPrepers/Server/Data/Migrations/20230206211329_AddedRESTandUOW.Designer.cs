@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodPrepers.Server.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230205212527_AddedDefaultDataAndUser")]
-    partial class AddedDefaultDataAndUser
+    [Migration("20230206211329_AddedRESTandUOW")]
+    partial class AddedRESTandUOW
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -120,10 +120,15 @@ namespace FoodPrepers.Server.Data.Migrations
                     b.Property<int>("ServingSize")
                         .HasColumnType("int");
 
+                    b.Property<int?>("StaffId")
+                        .HasColumnType("int");
+
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("StaffId");
 
                     b.ToTable("Foods");
 
@@ -133,8 +138,8 @@ namespace FoodPrepers.Server.Data.Migrations
                             Id = 1,
                             Category = "Meat",
                             CreatedBy = "SeedData",
-                            DateCreated = new DateTime(2023, 2, 6, 5, 25, 26, 773, DateTimeKind.Local).AddTicks(887),
-                            DateUpdated = new DateTime(2023, 2, 6, 5, 25, 26, 773, DateTimeKind.Local).AddTicks(7731),
+                            DateCreated = new DateTime(2023, 2, 7, 5, 13, 29, 243, DateTimeKind.Local).AddTicks(2403),
+                            DateUpdated = new DateTime(2023, 2, 7, 5, 13, 29, 244, DateTimeKind.Local).AddTicks(643),
                             Description = "Lean protein source",
                             Name = "Chicken breast",
                             ServingSize = 100,
@@ -145,11 +150,47 @@ namespace FoodPrepers.Server.Data.Migrations
                             Id = 2,
                             Category = "Fish",
                             CreatedBy = "SeedData",
-                            DateCreated = new DateTime(2023, 2, 6, 5, 25, 26, 773, DateTimeKind.Local).AddTicks(8287),
-                            DateUpdated = new DateTime(2023, 2, 6, 5, 25, 26, 773, DateTimeKind.Local).AddTicks(8290),
+                            DateCreated = new DateTime(2023, 2, 7, 5, 13, 29, 244, DateTimeKind.Local).AddTicks(1235),
+                            DateUpdated = new DateTime(2023, 2, 7, 5, 13, 29, 244, DateTimeKind.Local).AddTicks(1238),
                             Description = "Omega-3 fatty acid rich food",
                             Name = "Salmon",
                             ServingSize = 100,
+                            UpdatedBy = "SeedData"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Category = "Dairy",
+                            CreatedBy = "SeedData",
+                            DateCreated = new DateTime(2023, 2, 7, 5, 13, 29, 244, DateTimeKind.Local).AddTicks(1240),
+                            DateUpdated = new DateTime(2023, 2, 7, 5, 13, 29, 244, DateTimeKind.Local).AddTicks(1241),
+                            Description = "High in protein and versatile ingredient",
+                            Name = "Eggs",
+                            ServingSize = 50,
+                            UpdatedBy = "SeedData"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Category = "Grains",
+                            CreatedBy = "SeedData",
+                            DateCreated = new DateTime(2023, 2, 7, 5, 13, 29, 244, DateTimeKind.Local).AddTicks(1243),
+                            DateUpdated = new DateTime(2023, 2, 7, 5, 13, 29, 244, DateTimeKind.Local).AddTicks(1244),
+                            Description = "Whole grain rich in fiber and carbohydrates",
+                            Name = "Brown Rice",
+                            ServingSize = 150,
+                            UpdatedBy = "SeedData"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Category = "Vegetables",
+                            CreatedBy = "SeedData",
+                            DateCreated = new DateTime(2023, 2, 7, 5, 13, 29, 244, DateTimeKind.Local).AddTicks(1245),
+                            DateUpdated = new DateTime(2023, 2, 7, 5, 13, 29, 244, DateTimeKind.Local).AddTicks(1246),
+                            Description = "Leafy green vegetable high in nutrients",
+                            Name = "Spinach",
+                            ServingSize = 50,
                             UpdatedBy = "SeedData"
                         });
                 });
@@ -211,7 +252,7 @@ namespace FoodPrepers.Server.Data.Migrations
                         {
                             Id = 1,
                             CreatedBy = "SeedData",
-                            DateCreated = new DateTime(2023, 2, 6, 5, 25, 26, 775, DateTimeKind.Local).AddTicks(4850),
+                            DateCreated = new DateTime(2023, 2, 7, 5, 13, 29, 246, DateTimeKind.Local).AddTicks(7404),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "A meal to start your day",
                             MealPlanId = 1,
@@ -227,7 +268,7 @@ namespace FoodPrepers.Server.Data.Migrations
                         {
                             Id = 2,
                             CreatedBy = "SeedData",
-                            DateCreated = new DateTime(2023, 2, 6, 5, 25, 26, 775, DateTimeKind.Local).AddTicks(4858),
+                            DateCreated = new DateTime(2023, 2, 7, 5, 13, 29, 246, DateTimeKind.Local).AddTicks(7414),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "A meal to have in the middle of your day",
                             MealPlanId = 1,
@@ -243,7 +284,7 @@ namespace FoodPrepers.Server.Data.Migrations
                         {
                             Id = 3,
                             CreatedBy = "SeedData",
-                            DateCreated = new DateTime(2023, 2, 6, 5, 25, 26, 775, DateTimeKind.Local).AddTicks(4860),
+                            DateCreated = new DateTime(2023, 2, 7, 5, 13, 29, 246, DateTimeKind.Local).AddTicks(7417),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "A meal to have at the end of your day",
                             MealPlanId = 1,
@@ -348,6 +389,18 @@ namespace FoodPrepers.Server.Data.Migrations
                             TotalCaloricIntake = 500,
                             TotalFiber = 25,
                             TotalProtein = 35
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FoodId = 1,
+                            MealId = 3,
+                            ServingSize = 100,
+                            TotalCaloricIntake = 300,
+                            TotalFiber = 15,
+                            TotalProtein = 25
                         });
                 });
 
@@ -406,8 +459,8 @@ namespace FoodPrepers.Server.Data.Migrations
                         {
                             Id = 1,
                             CreatedBy = "SeedData",
-                            DateCreated = new DateTime(2023, 2, 6, 5, 25, 26, 775, DateTimeKind.Local).AddTicks(1222),
-                            DateUpdated = new DateTime(2023, 2, 6, 5, 25, 26, 775, DateTimeKind.Local).AddTicks(1227),
+                            DateCreated = new DateTime(2023, 2, 7, 5, 13, 29, 246, DateTimeKind.Local).AddTicks(1664),
+                            DateUpdated = new DateTime(2023, 2, 7, 5, 13, 29, 246, DateTimeKind.Local).AddTicks(1673),
                             Description = "A meal plan high in protein",
                             Name = "High Protein Meal Plan",
                             TotalCaloricIntake = 2500,
@@ -423,8 +476,8 @@ namespace FoodPrepers.Server.Data.Migrations
                         {
                             Id = 2,
                             CreatedBy = "SeedData",
-                            DateCreated = new DateTime(2023, 2, 6, 5, 25, 26, 775, DateTimeKind.Local).AddTicks(1231),
-                            DateUpdated = new DateTime(2023, 2, 6, 5, 25, 26, 775, DateTimeKind.Local).AddTicks(1232),
+                            DateCreated = new DateTime(2023, 2, 7, 5, 13, 29, 246, DateTimeKind.Local).AddTicks(1678),
+                            DateUpdated = new DateTime(2023, 2, 7, 5, 13, 29, 246, DateTimeKind.Local).AddTicks(1679),
                             Description = "A meal plan low in carbohydrates",
                             Name = "Low Carb Meal Plan",
                             TotalCaloricIntake = 2000,
@@ -478,6 +531,9 @@ namespace FoodPrepers.Server.Data.Migrations
                     b.Property<int>("Sodium")
                         .HasColumnType("int");
 
+                    b.Property<int?>("StaffId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Sugars")
                         .HasColumnType("int");
 
@@ -497,6 +553,8 @@ namespace FoodPrepers.Server.Data.Migrations
 
                     b.HasIndex("FoodId")
                         .IsUnique();
+
+                    b.HasIndex("StaffId");
 
                     b.ToTable("NutritionFacts");
 
@@ -536,6 +594,64 @@ namespace FoodPrepers.Server.Data.Migrations
                             TotalCarbohydrates = 0,
                             TotalFat = 13,
                             TransFat = 0
+                        });
+                });
+
+            modelBuilder.Entity("FoodPrepers.Shared.Domain.Staff", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Staffs");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "johndoe@example.com",
+                            Name = "John Doe",
+                            Password = "secret",
+                            UserName = "johndoe"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "janedoe@example.com",
+                            Name = "Jane Doe",
+                            Password = "secret",
+                            UserName = "janedoe"
                         });
                 });
 
@@ -777,6 +893,13 @@ namespace FoodPrepers.Server.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("FoodPrepers.Shared.Domain.Food", b =>
+                {
+                    b.HasOne("FoodPrepers.Shared.Domain.Staff", null)
+                        .WithMany("Foods")
+                        .HasForeignKey("StaffId");
+                });
+
             modelBuilder.Entity("FoodPrepers.Shared.Domain.Meal", b =>
                 {
                     b.HasOne("FoodPrepers.Shared.Domain.MealPlan", "MealPlan")
@@ -804,6 +927,10 @@ namespace FoodPrepers.Server.Data.Migrations
                         .HasForeignKey("FoodPrepers.Shared.Domain.NutritionFact", "FoodId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("FoodPrepers.Shared.Domain.Staff", null)
+                        .WithMany("NutritionFacts")
+                        .HasForeignKey("StaffId");
 
                     b.Navigation("Food");
                 });
@@ -872,6 +999,13 @@ namespace FoodPrepers.Server.Data.Migrations
             modelBuilder.Entity("FoodPrepers.Shared.Domain.MealPlan", b =>
                 {
                     b.Navigation("Meals");
+                });
+
+            modelBuilder.Entity("FoodPrepers.Shared.Domain.Staff", b =>
+                {
+                    b.Navigation("Foods");
+
+                    b.Navigation("NutritionFacts");
                 });
 #pragma warning restore 612, 618
         }
