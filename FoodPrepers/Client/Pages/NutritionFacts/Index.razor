@@ -1,0 +1,84 @@
+﻿
+@page  "/nutritionfacts/"
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]  
+
+<h3 class = "card-title">NutritionFacts</h3>
+<br />
+
+@if (NutritionFacts == null)
+{
+<div class="alert" alert-info>Loading NutritionFacts...</div>
+}
+else 
+{
+    <table class="table table-responsive">
+           <thead>
+               <tr>
+                   <th>Food Name</th>
+                   <th>Serving Size (g)</th>
+                   <th>Caloric Value (kcal)</th>
+                   <th>Total Fat (g)</th>
+                   <th>Saturated Fat (g)</th>
+                   <th>Trans Fat (g)</th>
+                   <th>Cholesterol (mg)</th>
+                   <th>Sodium (mg)</th>
+                   <th>Total Carbohydrates (g)</th>
+                   <th>Dietary Fiber (g)</th>
+                   <th>Sugars (g)</th>
+                   <th>Protein (g)</th>
+                   <th>Actions</th>
+               </tr>
+           </thead>
+
+        <tbody>
+            @foreach (var nutritionfact in NutritionFacts) 
+            {
+
+
+
+                <tr>
+                    <td>@nutritionfact.Food.Name</td>
+                    <td>@nutritionfact.ServingSize</td>
+                    <td>@nutritionfact.CaloricValue</td>
+                    <td>@nutritionfact.TotalFat</td>
+                    <td>@nutritionfact.SaturatedFat</td>
+                    <td>@nutritionfact.TransFat</td>
+                    <td>@nutritionfact.Cholesterol</td>
+                    <td>@nutritionfact.Sodium</td>
+                    <td>@nutritionfact.TotalCarbohydrates</td>
+                    <td>@nutritionfact.DietaryFiber</td>
+                    <td>@nutritionfact.Sugars</td>
+                    <td>@nutritionfact.Protein</td>
+
+                </tr>
+
+            }
+        </tbody>
+    </table>
+}
+
+
+
+
+@code {
+    private List<NutritionFact> NutritionFacts;
+
+    protected async override Task OnInitializedAsync()
+    {
+        NutritionFacts = await _client.GetFromJsonAsync<List<NutritionFact>>($"{Endpoints.NutritionFactsEndpoint}");
+    }
+
+    async Task Delete(int nutritionfactId)
+    {
+        var nutritionfact = NutritionFacts.First(q => q.Id == nutritionfactId);
+        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete nutrition fact for food '{nutritionfact.Food.Name}'?");
+        if (confirm)
+        {
+            await _client.DeleteAsync($"{Endpoints.NutritionFactsEndpoint}/{nutritionfactId}");
+            await OnInitializedAsync();
+        }
+    }
+
+}

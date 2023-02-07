@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.33214.272
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodPrepers.Server", "FoodPrepers\Server\FoodPrepers.Server.csproj", "{16F7377D-8D90-4115-8E73-4B87A23872F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodPrepers.Server", "FoodPrepers\Server\FoodPrepers.Server.csproj", "{16F7377D-8D90-4115-8E73-4B87A23872F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodPrepers.Client", "FoodPrepers\Client\FoodPrepers.Client.csproj", "{4F7D35C8-7914-4A8F-BAF0-865544C59668}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodPrepers.Client", "FoodPrepers\Client\FoodPrepers.Client.csproj", "{4F7D35C8-7914-4A8F-BAF0-865544C59668}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodPrepers.Shared", "FoodPrepers\Shared\FoodPrepers.Shared.csproj", "{8F80C37F-69C6-428F-8656-77A48904384B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodPrepers.Shared", "FoodPrepers\Shared\FoodPrepers.Shared.csproj", "{8F80C37F-69C6-428F-8656-77A48904384B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

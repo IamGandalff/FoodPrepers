@@ -35,9 +35,9 @@ namespace FoodPrepers.Server.Controllers
         //public async Task<ActionResult<IEnumerable<NutritionFact>>> GetNutritionFacts()
         public async Task<IActionResult> GetNutritionFacts()
         {
-         
+
             //return await _context.Makes.ToListAsync();
-            var NutritionFacts = await _unitOfWork.NutritionFacts.GetAll();
+            var NutritionFacts = await _unitOfWork.NutritionFacts.GetAll(includes: q => q.Include(x => x.Food));
             return Ok(NutritionFacts);
         }
 
