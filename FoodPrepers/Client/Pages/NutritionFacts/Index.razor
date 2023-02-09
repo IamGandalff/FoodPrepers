@@ -2,42 +2,38 @@
 @page  "/nutritionfacts/"
 @inject HttpClient _client
 @inject IJSRuntime js
-@attribute [Authorize]  
+@attribute [Authorize]
 
-<h3 class = "card-title">NutritionFacts</h3>
-<br />
+<h1>Nutrition Facts</h1>
 
 @if (NutritionFacts == null)
 {
-<div class="alert" alert-info>Loading NutritionFacts...</div>
+    <div class="alert" alert-info>Loading NutritionFacts...</div>
 }
-else 
+else
 {
     <table class="table table-responsive">
-           <thead>
-               <tr>
-                   <th>Food Name</th>
-                   <th>Serving Size (g)</th>
-                   <th>Caloric Value (kcal)</th>
-                   <th>Total Fat (g)</th>
-                   <th>Saturated Fat (g)</th>
-                   <th>Trans Fat (g)</th>
-                   <th>Cholesterol (mg)</th>
-                   <th>Sodium (mg)</th>
-                   <th>Total Carbohydrates (g)</th>
-                   <th>Dietary Fiber (g)</th>
-                   <th>Sugars (g)</th>
-                   <th>Protein (g)</th>
-                   <th>Actions</th>
-               </tr>
-           </thead>
+        <thead>
+            <tr>
+                <th>Food Name</th>
+                <th>Serving Size (g)</th>
+                <th>Caloric Value (kcal)</th>
+                <th>Total Fat (g)</th>
+                <th>Saturated Fat (g)</th>
+                <th>Trans Fat (g)</th>
+                <th>Cholesterol (mg)</th>
+                <th>Sodium (mg)</th>
+                <th>Total Carbohydrates (g)</th>
+                <th>Dietary Fiber (g)</th>
+                <th>Sugars (g)</th>
+                <th>Protein (g)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
 
         <tbody>
-            @foreach (var nutritionfact in NutritionFacts) 
+            @foreach (var nutritionfact in NutritionFacts)
             {
-
-
-
                 <tr>
                     <td>@nutritionfact.Food.Name</td>
                     <td>@nutritionfact.ServingSize</td>
@@ -51,9 +47,10 @@ else
                     <td>@nutritionfact.DietaryFiber</td>
                     <td>@nutritionfact.Sugars</td>
                     <td>@nutritionfact.Protein</td>
-
+                    <td>
+                        <button class="btn btn-danger" @onclick="(async () => await Delete(nutritionfact.Id))">Delete</button>
+                    </td>
                 </tr>
-
             }
         </tbody>
     </table>
@@ -80,5 +77,4 @@ else
             await OnInitializedAsync();
         }
     }
-
 }

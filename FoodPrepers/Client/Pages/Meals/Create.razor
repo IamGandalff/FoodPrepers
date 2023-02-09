@@ -1,0 +1,73 @@
+﻿@page "/meals/create/"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3 class="card-title">Create New Meal</h3>
+<hr/>
+<br/>
+
+<EditForm Model="@meal" OnValidSubmit="CreateMeal">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+         <label>MealPlan: </label>
+         <div>
+
+            <InputSelect @bind-Value="meal.MealPlan" class="form-control">
+                <option value="">-- Select MealPlan --</option>
+                @if (MealPlans != null)
+                {
+                    foreach (var mealplan in MealPlans)
+                    {
+                            <option value="@mealplan.Id">@mealplan.Name</option>
+                    }
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => meal.MealPlanId)" />
+         </div>
+    </div>
+
+    <div class="form-group">
+         <label>MealFood: </label>
+         <div>
+
+            <InputSelect @bind-Value="meal.MealFoods" class="form-control">
+                <option value="">-- Select MealFood --</option>
+                @if (MealFoods != null)
+                {
+                    foreach (var mealfood in MealFoods)
+                    {
+                            <option value="@mealfood.Id">@mealfood.ServingSize</option>
+                    }
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => meal.MealFoods)" />
+         </div>
+    </div>
+
+    <button type="submit" class="btn btn-success btn-block">
+            Create Meal
+    </button>
+</EditForm>
+
+
+
+@code{
+    Meal meal = new Meal();
+
+    private IList<MealPlan> MealPlans;
+    private IList<MealFood> MealFoods;
+
+    protected async override Task OnInitializedAsync()
+    {
+        MealPlans = await _client.GetFromJsonAsync<List<MealPlan>>($"{Endpoints.MealPlansEndpoint}");
+        MealFoods = await _client.GetFromJsonAsync<List<MealFood>>($"{Endpoints.MealFoodsEndpoint}");
+    }
+
+    private async Task CreateMeal()
+    {
+        await _client.PostAsJsonAsync(Endpoints.MealsEndpoint, meal);
+        _navManager.NavigateTo("/meals/");
+    }
+}

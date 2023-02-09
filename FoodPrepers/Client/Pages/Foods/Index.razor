@@ -1,47 +1,58 @@
-﻿
-@page  "/foods/"
+﻿@page  "/foods/"
 @inject HttpClient _client
 @inject IJSRuntime js
-@attribute [Authorize]  
+@attribute [Authorize]
 
-<h3 class = "card-title">Foods</h3>
+<h3 class="card-title">Foods</h3>
+<br />
+<a href="/foods/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Food
+</a>
+<br />
 <br />
 
 @if (Foods == null)
 {
-<div class="alert" alert-info>Loading Foods...</div>
+    <div class="alert" alert-info>Loading Foods...</div>
 }
-else 
+else
 {
     <table class="table table-responsive">
-           <thead>
-               <tr>
-                   <th>Name</th>
-                   <th>Actions</th>
-               </tr>
-           </thead>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Serving Size</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
 
         <tbody>
             @foreach (var food in Foods)
             {
                 <tr>
                     <td>@food.Name</td>
+                    <td>@food.Description</td>
+                    <td>@food.Category</td>
+                    <td>@food.ServingSize</td>
                     <td>
                         <a href="/foods/view@food.Id" class="btn btn-primary">
-                           <span class="oi oi-book"></span>
+                            <span class="oi oi-book"></span>
                         </a>
                         <a href="/foods/edit/@food.Id" class="btn btn-warning">
                             <span class="oi oi-pencil"></span>
                         </a>
-                        <button class="btn btn-danger" @onclick="@(()=>Delete(food.Id))">
-                             <span class="oi oi-delete"></span>
+                        <button class="btn btn-danger" @onclick="@(() => Delete(food.Id))">
+                            <span class="oi oi-delete"></span>
                         </button>
                     </td>
                 </tr>
-
             }
         </tbody>
     </table>
+
 }
 
 
@@ -65,5 +76,4 @@ else
             await OnInitializedAsync();
         }
     }
-
 }

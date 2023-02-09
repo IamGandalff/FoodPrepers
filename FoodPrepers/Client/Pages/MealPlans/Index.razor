@@ -1,61 +1,67 @@
-﻿
-@page  "/mealplans/"
+﻿@page "/mealplans/"
 @inject HttpClient _client
 @inject IJSRuntime js
-@attribute [Authorize]  
+@attribute [Authorize]
 
-<h3 class = "card-title">MealPlans</h3>
+<h3 class="card-title">MealPlans</h3>
+<br />
+
+<a href="/mealplans/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Meal Plan
+</a>
+<br />
 <br />
 
 @if (MealPlans == null)
 {
-<div class="alert" alert-info>Loading MealPlans...</div>
+    <div class="alert alert-info">Loading MealPlans...</div>
 }
-else 
+else
 {
     <table class="table table-responsive">
-           <thead>
-               <tr>
-                   <th>Name</th>
-                   <th>Actions</th>
-               </tr>
-           </thead>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Date Created</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
 
         <tbody>
             @foreach (var mealplan in MealPlans)
             {
                 <tr>
                     <td>@mealplan.Name</td>
+                    <td>@mealplan.Description</td>
+                    <td>@mealplan.DateCreated.ToString("yyyy-MM-dd")</td>
                     <td>
-                        <a href="/mealplans/view@mealplan.Id" class="btn btn-primary">
-                           <span class="oi oi-book"></span>
+                        <a href="/mealplans/view/@mealplan.Id" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
                         </a>
                         <a href="/mealplans/edit/@mealplan.Id" class="btn btn-warning">
                             <span class="oi oi-pencil"></span>
                         </a>
-                        <button class="btn btn-danger" @onclick="@(()=>Delete(mealplan.Id))">
-                             <span class="oi oi-delete"></span>
+                        <button class="btn btn-danger" @onclick="@(() => Delete(mealplan.Id))">
+                            <span class="oi oi-delete"></span>
                         </button>
                     </td>
                 </tr>
-
             }
         </tbody>
     </table>
 }
 
-
-
-
 @code {
     private List<MealPlan> MealPlans;
 
-    protected async override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
-        MealPlans = await _client.GetFromJsonAsync<List<MealPlan>>($"{Endpoints.MealPlansEndpoint}");
+        MealPlans = await _client.GetFromJsonAsync<List<MealPlan>>(Endpoints.MealPlansEndpoint);
     }
 
-    async Task Delete(int mealplanId)
+    private async Task Delete(int mealplanId)
     {
         var mealplan = MealPlans.First(q => q.Id == mealplanId);
         var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {mealplan.Name}?");
@@ -65,5 +71,4 @@ else
             await OnInitializedAsync();
         }
     }
-
 }

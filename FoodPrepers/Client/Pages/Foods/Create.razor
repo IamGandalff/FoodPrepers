@@ -1,0 +1,41 @@
+﻿@page "/foods/create"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3>Create</h3>
+<br />
+<form method="post">
+    <div class="form-group">
+        <label for="Name">Name:</label>
+        <input type="text" id="Name" class="form-control" @bind-value="food.Name" />
+    </div>
+    <div class="form-group">
+        <label for="Description">Description:</label>
+        <input type="text" id="Description" class="form-control" @bind-value="food.Description" />
+    </div>
+    <div class="form-group">
+        <label for="Category">Category:</label>
+        <input type="text" id="Category" class="form-control" @bind-value="food.Category" />
+    </div>
+    <div class="form-group">
+        <label for="ServingSize">Serving Size:</label>
+        <input type="text" id="ServingSize" class="form-control" @bind-value="food.ServingSize" />
+    </div>
+    <button type="submit" class="btn btn-primary" @onclick="@CreateFood">Create</button>
+    <a href="/foods" class="btn btn-secondary">Back to List</a>
+</form>
+
+@code {
+    private Food food = new Food();
+    private List<Food> _foods = new List<Food>();
+
+    private async Task CreateFood()
+    {
+        await _client.PostAsJsonAsync($"{Endpoints.FoodsEndpoint}", food);
+        _foods.Add(food);
+        food = new Food();
+        _navManager.NavigateTo("/foods");
+        Console.WriteLine(_navManager.Uri);
+    }
+
+}

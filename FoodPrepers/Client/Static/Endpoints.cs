@@ -13,7 +13,7 @@ namespace FoodPrepers.Client.Static
         public static readonly string MealFoodsEndpoint = $"{Prefix}/mealfoods";
         public static readonly string MealPlansEndpoint = $"{Prefix}/mealplans";
         public static readonly string MealsEndpoint = $"{Prefix}/meals";
-        public static readonly string NutritionFactsEndpoint = $"{Prefix}/NutritionFacts";
-        public static readonly string StaffsEndpoint = $"{Prefix}/Staffs";
+        public static readonly string NutritionFactsEndpoint = $"{Prefix}/nutritionfacts";
+        public static readonly string StaffsEndpoint = $"{Prefix}/staffs";
     }
 }

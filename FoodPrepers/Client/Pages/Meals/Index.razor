@@ -1,40 +1,50 @@
-﻿
-@page  "/meals/"
+﻿@page  "/meals/"
 @inject HttpClient _client
 @inject IJSRuntime js
-@attribute [Authorize]  
+@attribute [Authorize]
 
-<h3 class = "card-title">Meals</h3>
+<h3 class="card-title">Meals</h3>
+<br />
+
+<a href="/meals/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Meal
+</a>
+<br />
 <br />
 
 @if (Meals == null)
 {
-<div class="alert" alert-info>Loading Meals...</div>
+    <div class="alert" alert-info>Loading Meals...</div>
 }
-else 
+else
 {
     <table class="table table-responsive">
-           <thead>
-               <tr>
-                   <th>Name</th>
-                   <th>Actions</th>
-               </tr>
-           </thead>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Calories</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
 
         <tbody>
             @foreach (var meal in Meals)
             {
                 <tr>
                     <td>@meal.Name</td>
+                    <td>@meal.Description</td>
+                    <td>@meal.TotalCaloricIntake</td>
                     <td>
-                        <a href="/meals/view@meal.Id" class="btn btn-primary">
-                           <span class="oi oi-book"></span>
+                        <a href="/meals/view/@meal.Id" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
                         </a>
                         <a href="/meals/edit/@meal.Id" class="btn btn-warning">
                             <span class="oi oi-pencil"></span>
                         </a>
                         <button class="btn btn-danger" @onclick="@(()=>Delete(meal.Id))">
-                             <span class="oi oi-delete"></span>
+                            <span class="oi oi-delete"></span>
                         </button>
                     </td>
                 </tr>
